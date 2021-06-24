@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo</title>
+</head>
+<body>
+    
+    <main>
+
+    </main>
+
+</body>
+
+<script>
+    // Se comunica com api
+    
+    async function obterConteudo(){
+
+        try {
+            
+            const response = await fetch('http://localhost:8080/')
+            // console.log(response);
+
+            // transformando os dados em json
+            const data = await response.json()
+
+            mostrarUsuario(data);
+            
+        } catch (error) {
+            
+            console.log('ERROU');
+        }
+    }
+
+    obterConteudo()
+
+    function mostrarUsuario(usuarios){
+       
+        let resultado = '';
+
+        // Pegue um usuario de usuarios
+        for(let usuario of usuarios){
+
+            resultado += `<li>${usuario.name}</li>`
+        }
+
+        document.querySelector('main').innerHTML = resultado;
+    }
+
+
+</script>
+</html>
